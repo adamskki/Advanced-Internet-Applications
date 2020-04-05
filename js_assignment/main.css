@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body .description p {
+  display: inline-block;
+  width: 30%;
+  font-weight: bold;
+  font-size: larger;
+}
+body .description #author {
+  margin-left: 100px;
+}
+body .fields-list .fields-list_items .field_item {
+  display: inline-block;
+  padding: 7px;
+  width: 30%;
+  font-family: "Times New Roman";
+  font-size: 16px;
+  margin-right: 4px;
+}
+body .fields-list .fields-list_items .field_item input {
+  width: 80%;
+}
+body .fields-list .fields-list_items .field_item button {
+  margin-right: 4px;
+}
+body .fields-list .fields-list_items .field_item p {
+  margin: 0px;
+}
+
+/*# sourceMappingURL=main.css.map */
