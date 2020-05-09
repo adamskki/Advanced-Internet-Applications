@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online-shop</title>
+    <link rel="stylesheet" href="/products-list.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <h1>Online Shop</h1>
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a href="/">Shop</a></li>
+                <li class="main-header__item"><a href="/bag">Bag</a></li>
+            </ul>
+        </nav>
+        <% if(deleteAll===true) { %>
+            <div class="clear-bag">
+                <h2 class="removed-header">All products were removed from bag!</h2>
+            </div>
+        <% } %>
+        <% if(buyAllSuccess===true) { %>
+            <div class="clear-bag">
+                <h2 class="success-header">Success! All products were bought!</h2>
+            </div>
+        <% } %>
+        <% if(buyAllError===true) { %>
+            <div class="clear-bag">
+                <h2 class="error-header">Unsuccessful buy. Someone bought your products!</h2>
+            </div>
+        <% } %>
+
+    </header>
+    <main>
+        <% if (prods.length > 0) { %>
+            <div class="main-product_list">
+                <% for (let product of prods) { %>
+                    <div class="products-container">
+                        <div class="product-item">
+                            <header class="card__header">
+                                <h1 class="product__title"><%= product.title %></h1>
+                            </header>
+                            <div class="card__image">
+                                <img src="<%= product.url_image %>"
+                                alt="A product"
+                                width="150"
+                                height="200">
+                            </div>
+                            <div class="card__content">
+                                <h2 class="product__price"><%= product.price %>$</h2>
+                            </div>
+                            <div class="card__actions">
+                                <form action="/add-to-bag" method="POST">
+                                    <input type="hidden" name="id" value="<%= product.id %>">
+                                    <button class="btn" type="submit">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div class="no-products">
+                <h1>No more products found!</h1>
+            </div>
+            <% } %>
+    </main>
+</body>

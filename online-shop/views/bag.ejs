@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online-shop</title>
+    <link rel="stylesheet" href="/bag.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <h1>Online Shop</h1>
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a href="/">Shop</a></li>
+                <li class="main-header__item"><a href="/bag">Bag</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="main_bag">
+            <% if(prods.length > 0) { %>
+                <h1>Your Bag</h1>
+                <div class="main-bag_list">
+                    <% for (let product of prods) { %>
+                        <div class="bag-item">
+                            <div class="bag-product_image">
+                                <img src="<%= product.url_image %>"
+                                alt="A product"
+                                width="60"
+                                height="80">
+                            </div>
+                            <header class="bag-product_title">
+                                <h1 class="product__title"><%= product.title %></h1>
+                            </header>
+                            <div class="bag-product_price">
+                                <h2 class="product__price"><%= product.price %>$</h2>
+                            </div>
+                            <div class="bag-product_remove">
+                                <form action="/bag" method="POST">
+                                    <input type="hidden" name="id" value="<%= product.id %>">
+                                    <button class="btn" type="submit">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="actions-buttons">
+                    <form action="/remove-all" method="POST">
+                        <button class="btn" type="submit">Cancell All</button>
+                    </form>
+                    <form action="/buy" method="POST">
+                        <button class="btn" type="submit">Buy All</button>
+                    </form>
+                </div>
+            <% } else { %>
+                <h1>No products found in your Bag</h1>
+                <% } %>
+        </div>
+    </main>
+</body>
