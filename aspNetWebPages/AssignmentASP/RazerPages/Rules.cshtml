@@ -1,0 +1,45 @@
+﻿@{
+    var rules = new List<string>();
+
+
+    if (IsPost)
+    {
+        rules = (List<string>)Session["rules"];
+        rules.Add(Request["rule"]);
+        Session["rules"] = rules;
+        Response.Redirect("Rules.cshtml");
+
+    }
+    else
+    {
+        if (Session["rules"] == null)
+        {
+            Session["rules"] = rules;
+        }
+
+    }
+    rules = (List<string>)Session["rules"];
+
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rules</title>
+</head>
+<body>
+    <form method="post" action="~/RazerPages/Rules.cshtml">
+        <input type="text" name="rule"/>
+        <button type="submit" >Add rule</button>
+    </form>
+
+    <ol>
+        @foreach (var rule in rules)
+        {
+            <li>@rule</li>
+        }
+    </ol>
+</body>
+</html>
